@@ -8,6 +8,7 @@ var moment = require("moment");
 
 var command = process.argv[2];
 var subject = process.argv.slice(3).join(" ");
+var dataArr = [];
 
 function concert() {
     if (!subject) {
@@ -63,6 +64,44 @@ function movie() {
           console.log(error.config);
         });
       
+};
+
+function random() {
+    fs.readFile("random.txt", "utf8", function(error, data) {
+
+        // If the code experiences any errors it will log the error to the console.
+        if (error) {
+          return console.log(error);
+        }
+      
+        // We will then print the contents of data
+        console.log(data);
+      
+        // Then split it by commas (to make it more readable)
+        dataArr = data.split(",");
+      
+        // We will then re-display the content as an array for later use.
+        console.log(dataArr);
+
+        command = dataArr[0];
+        subject = dataArr[1];
+    
+        switch(command) {
+            case "concert-this":
+                concert();
+                break;
+            case "spotify-this-song":
+                song();
+                break;
+            case "movie-this":
+                movie();
+                break;
+            default:
+                console.log("Not a recognized command");
+                break;
+        }  
+    });
+
 }
 
 switch(command) {
