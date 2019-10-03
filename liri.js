@@ -24,14 +24,22 @@ function concert() {
 };
 
 function song() {
+    if (!subject) {
+        subject = "The Sign";
+    }
     spotify.search({ type: 'track', query: subject },
     function(err, response) {
         if (err) {
-          return console.log('Error occurred: ' + err);
+            return console.log('Error occurred: ' + err);
         }
-       
-      console.log(response.tracks.items[0]);
-      });
+        // debugger;
+        var artists = response.tracks.items[0].artists;
+        console.log("\nArtist(s):")
+        for (i = 0; i < artists.length; i++) {
+            console.log(" " + artists[i].name);
+        };
+        console.log("Song Name: " + response.tracks.items[0].name + "\nPreview Link: " + response.tracks.items[0].preview_url + "\nAlbum: " + response.tracks.items[0].album.name + "\n\n-------------------");
+    });
 };
 
 function movie() {
@@ -41,7 +49,7 @@ function movie() {
     var queryUrl = "http://www.omdbapi.com/?t=" + subject + "&y=&plot=short&apikey=trilogy";
     axios.get(queryUrl).then(
         function(response) {
-          console.log("\nMovie Title: " +response.data.Title + "\nRelease Year: " +response.data.Year + "\nIMDB Rating: " +response.data.imdbRating + "\nRotten Tomatoes Rating: " +response.data.Ratings[1].Value + "\nCountry: " +response.data.Country + "\nLanguage: " +response.data.Language + "\nPlot: " +response.data.Plot + "\nActors: " +response.data.Actors);
+          console.log("\nMovie Title: " + response.data.Title + "\nRelease Year: " + response.data.Year + "\nIMDB Rating: " + response.data.imdbRating + "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value + "\nCountry: " + response.data.Country + "\nLanguage: " + response.data.Language + "\nPlot: " + response.data.Plot + "\nActors: " + response.data.Actors);
         })
         .catch(function(error) {
           if (error.response) {
@@ -74,15 +82,9 @@ function random() {
           return console.log(error);
         }
       
-        // We will then print the contents of data
-        console.log(data);
-      
         // Then split it by commas (to make it more readable)
         dataArr = data.split(",");
       
-        // We will then re-display the content as an array for later use.
-        console.log(dataArr);
-
         command = dataArr[0];
         subject = dataArr[1];
     
