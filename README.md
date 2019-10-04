@@ -21,7 +21,10 @@ Using Bandsintown, Spotify and OMBD, the user can chose from four options:
 <br>    (ex: node liri.js movie-this Independence Day)
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![concert-this](./img/concert-this.png)
+![spotify-this-song](./img/spotify-this-song.png)
+![movie-this](./img/movie-this.png)
+![do-what-it-says](./img/do-what-it-says.png)
 
 ## Technologies
 * Bands in Town Artist Events API
@@ -35,8 +38,7 @@ npm install axios, fs, moment and node-spotify-api <br>
 A Spotify ID and Secret will be needed.
 
 ## Code Examples
-Show examples of usage:
-'    switch(command) {
+    switch(command) {
         case "concert-this":
             concert();
             break;
@@ -50,25 +52,23 @@ Show examples of usage:
             random();
             break;
         default:
-            console.log("\nNot a recognized command. \nPlease try again in the following format: \nnode liri.js concert-this <artist>\nnode liri.js spotify-this-song <song>\nnode liri.js movie-this <movie>\nnode liri.js do-what-it-says\nRemember to input your choices in place of the brackets (ex: node liri.js movie-this Independence Day)");
+            console.log("Instructions");
             break;
-    };'
+    };
 
 ## Features
 List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
-
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+* concert-this 'artist/band name' will return a list of 5 upcoming concerts with venue, location and date.
+* spotify-this-song 'song name' will return the artist(s), song name, a preview link from Spotify and the album the song is from.
+* movie-this 'movie name' will return the movie title, year released, IMDB and Rotten Tomatoes ratings, the country where the movie was produced, the language of the movie, plot and actors in the movie
+* do-what-it-says will use fs to return the command and choice from a separate text file.
 
 ## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
+Project is: _finished_
 
 ## Inspiration
-Add here credits. Project inspired by..., based on...
+Based on a homework assignment for The Coding Bootcamp at UT Austin
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by Elise Hammons - feel free to contact me!
+<br>LinkedIn: https://www.linkedin.com/in/elise-h-01243258/
