@@ -21,7 +21,8 @@ function concert() {
             var date = moment(response.data[i].datetime).format("dddd, MMMM Do YYYY, h:mm:ss a");
             output = "\n" + (i+1) + ". " + response.data[i].lineup + "\nVenue: " + response.data[i].venue.name + "\nLocation: " + response.data[i].venue.city + ", " + response.data[i].venue.region + "\nDate: " + date + "\n\n-------------------";
             console.log(output);
-        }
+            writeLog();
+        };
     })
 };
 
@@ -36,11 +37,13 @@ function song() {
         }
         // debugger;
         var artists = response.tracks.items[0].artists;
+        output = "\nArtist(s):" + response.tracks.items[0].artists + "Song Name: " + response.tracks.items[0].name + "\nPreview Link: " + response.tracks.items[0].preview_url + "\nAlbum: " + response.tracks.items[0].album.name + "\n\n-------------------";
         console.log("\nArtist(s):")
         for (i = 0; i < artists.length; i++) {
             console.log(" " + artists[i].name);
         };
         console.log("Song Name: " + response.tracks.items[0].name + "\nPreview Link: " + response.tracks.items[0].preview_url + "\nAlbum: " + response.tracks.items[0].album.name + "\n\n-------------------");
+        writeLog();
     });
 };
 
@@ -51,7 +54,9 @@ function movie() {
     var queryUrl = "http://www.omdbapi.com/?t=" + subject + "&y=&plot=short&apikey=trilogy";
     axios.get(queryUrl).then(
         function(response) {
-          console.log("\nMovie Title: " + response.data.Title + "\nRelease Year: " + response.data.Year + "\nIMDB Rating: " + response.data.imdbRating + "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value + "\nCountry: " + response.data.Country + "\nLanguage: " + response.data.Language + "\nPlot: " + response.data.Plot + "\nActors: " + response.data.Actors);
+            output = "\nMovie Title: " + response.data.Title + "\nRelease Year: " + response.data.Year + "\nIMDB Rating: " + response.data.imdbRating + "\nRotten Tomatoes Rating: " + response.data.Ratings[1].Value + "\nCountry: " + response.data.Country + "\nLanguage: " + response.data.Language + "\nPlot: " + response.data.Plot + "\nActors: " + response.data.Actors;
+            console.log(output);
+            writeLog();
         })
         .catch(function(error) {
           if (error.response) {
@@ -128,4 +133,7 @@ switch(command) {
 
 function writeLog() {
     var divider = "\n------------------------------------------------------------\n\n";
+    fs.appendFile("log.txt", output + divider, function(err) {
+        if (err) throw err;
+    });
 }
