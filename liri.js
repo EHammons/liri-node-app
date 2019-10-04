@@ -9,6 +9,7 @@ var moment = require("moment");
 var command = process.argv[2];
 var subject = process.argv.slice(3).join(" ");
 var dataArr = [];
+var output;
 
 function concert() {
     if (!subject) {
@@ -18,7 +19,8 @@ function concert() {
     .then(function(response) {
         for (i = 0; i < 5; i++) {
             var date = moment(response.data[i].datetime).format("dddd, MMMM Do YYYY, h:mm:ss a");
-            console.log("\nVenue: " + response.data[i].venue.name + "\nLocation: " + response.data[i].venue.city + ", " + response.data[i].venue.region + "\nDate: " + date + "\n\n-------------------");
+            output = "\n" + (i+1) + ". " + response.data[i].lineup + "\nVenue: " + response.data[i].venue.name + "\nLocation: " + response.data[i].venue.city + ", " + response.data[i].venue.region + "\nDate: " + date + "\n\n-------------------";
+            console.log(output);
         }
     })
 };
@@ -104,7 +106,7 @@ function random() {
         }  
     });
 
-}
+};
 
 switch(command) {
     case "concert-this":
@@ -120,6 +122,10 @@ switch(command) {
         random();
         break;
     default:
-        console.log("Not a recognized command");
+        console.log("\nNot a recognized command. \nPlease try again in the following format: \nnode liri.js concert-this <artist>\nnode liri.js spotify-this-song <song>\nnode liri.js movie-this <movie>\nnode liri.js do-what-it-says\nRemember to input your choices in place of the brackets (ex: node liri.js movie-this Independence Day)");
         break;
+};
+
+function writeLog() {
+    var divider = "\n------------------------------------------------------------\n\n";
 }
