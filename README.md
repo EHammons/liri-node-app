@@ -36,7 +36,7 @@ A Spotify ID and Secret will be needed.
 
 ## Code Examples
 Show examples of usage:
-    switch(command) {
+'    switch(command) {
         case "concert-this":
             concert();
             break;
@@ -52,7 +52,7 @@ Show examples of usage:
         default:
             console.log("\nNot a recognized command. \nPlease try again in the following format: \nnode liri.js concert-this <artist>\nnode liri.js spotify-this-song <song>\nnode liri.js movie-this <movie>\nnode liri.js do-what-it-says\nRemember to input your choices in place of the brackets (ex: node liri.js movie-this Independence Day)");
             break;
-    };
+    };'
 
 ## Features
 List of features ready and TODOs for future development
